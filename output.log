@@ -1,0 +1,122 @@
+[0;32mInfo: Using configured environment 'production'[0m
+[0;32mInfo: Retrieving pluginfacts[0m
+[0;32mInfo: Retrieving plugin[0m
+[0;32mInfo: Loading facts[0m
+[0;32mInfo: Caching catalog for pupa.minsk.epam.com[0m
+[0;32mInfo: Applying configuration version '1474445029'[0m
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/facter/mysql_server_id.rb]/ensure: defined content as '{md5}10de205ca9dc83b68cf63b52d97346ec'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/facter/mysql_version.rb]/ensure: defined content as '{md5}e30648f3d394a1cbdd4e54eb5c28d28c'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/facter/mysqld_version.rb]/ensure: defined content as '{md5}961bc81ee08675f82a7e05c0894d238a'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/facter/staging_http_get.rb]/ensure: defined content as '{md5}07b6449105e1f314e06f83e37c8d07d3'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/facter/staging_windir.rb]/ensure: defined content as '{md5}8fc9fd906d84f91eed9a90a32f2843b6'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/parser/functions/mysql_deepmerge.rb]/ensure: defined content as '{md5}2b5040ee8cd75a81cf881851e922833a'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/parser/functions/mysql_dirname.rb]/ensure: defined content as '{md5}820ba09a6a0df639da560b41cb31242f'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/parser/functions/mysql_password.rb]/ensure: defined content as '{md5}365a0ba55f0d04d0f5d56abcd577ec7d'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/parser/functions/mysql_strip_hash.rb]/ensure: defined content as '{md5}3efe69f1eb189b2913e178b8472aaede'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/parser/functions/scope_defaults.rb]/ensure: defined content as '{md5}6ca7e42fa007a6d4090585544314fbc6'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/parser/functions/staging_parse.rb]/ensure: defined content as '{md5}b4fd8d7a375a624b345f1427025c8e84'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql.rb]/ensure: defined content as '{md5}2696893220da9d341d5826c9e9d4ca19'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_database]/ensure: created
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_database/mysql.rb]/ensure: defined content as '{md5}5cf9b8044df4ec72a726b5f781c84f8f'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_datadir]/ensure: created
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_datadir/mysql.rb]/ensure: defined content as '{md5}b37895aae0ef84516a09c36ca0776bcd'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_grant]/ensure: created
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_grant/mysql.rb]/ensure: defined content as '{md5}3630023349a4c8f06932938a26aaa2e6'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_plugin]/ensure: created
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_plugin/mysql.rb]/ensure: defined content as '{md5}49128d2a9a547c4945735bfd75fd6d6c'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_user]/ensure: created
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/provider/mysql_user/mysql.rb]/ensure: defined content as '{md5}f66a5d00963e6b6b94b41c366b4494b7'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/type/mysql_database.rb]/ensure: defined content as '{md5}438eafbfecc30605462a220d92cf9603'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/type/mysql_datadir.rb]/ensure: defined content as '{md5}f19e548062e81f424646c193b086aaf6'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/type/mysql_grant.rb]/ensure: defined content as '{md5}afcc65b0394a23e95b8bf932bc6110b4'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/type/mysql_plugin.rb]/ensure: defined content as '{md5}0a52cead6c9283c9aa14ea71bdfa80bd'
+Notice: /File[/opt/puppetlabs/puppet/cache/lib/puppet/type/mysql_user.rb]/ensure: defined content as '{md5}ccb3e18b85a197822fd67045a520bd0b'
+[mNotice: /Stage[main]/Mysql::Server::Config/File[/etc/my.cnf.d]/ensure: created[0m
+[mNotice: /Stage[main]/Mysql::Server::Config/File[mysql-config-file]/content: 
+--- /etc/my.cnf	2016-05-11 07:31:18.000000000 +0100
++++ /tmp/puppet-file20160921-22860-1n1934i	2016-09-21 09:03:50.724816037 +0100
+@@ -1,10 +1,63 @@
++### MANAGED BY PUPPET ###
++
++[client]
++port = 3306
++socket = /var/lib/mysql/mysql.sock
++
++[isamchk]
++key_buffer_size = 16M
++
+ [mysqld]
+-datadir=/var/lib/mysql
+-socket=/var/lib/mysql/mysql.sock
+-user=mysql
+-# Disabling symbolic-links is recommended to prevent assorted security risks
+-symbolic-links=0
++basedir = /usr
++bind-address = 127.0.0.1
++datadir = /var/lib/mysql
++expire_logs_days = 10
++key_buffer_size = 16M
++log-error = /var/log/mysqld.log
++max_allowed_packet = 16M
++max_binlog_size = 100M
++max_connections = 1024
++pid-file = /var/run/mysqld/mysqld.pid
++port = 3306
++query_cache_limit = 1M
++query_cache_size = 16M
++skip-external-locking
++socket = /var/lib/mysql/mysql.sock
++ssl = false
++ssl-ca = /etc/mysql/cacert.pem
++ssl-cert = /etc/mysql/server-cert.pem
++ssl-key = /etc/mysql/server-key.pem
++thread_cache_size = 8
++thread_stack = 256K
++tmpdir = /tmp
++user = mysql
++
++[mysqld-5.0]
++myisam-recover = BACKUP
++
++[mysqld-5.1]
++myisam-recover = BACKUP
++
++[mysqld-5.5]
++myisam-recover = BACKUP
++
++[mysqld-5.6]
++myisam-recover-options = BACKUP
++
++[mysqld-5.7]
++myisam-recover-options = BACKUP
+ 
+ [mysqld_safe]
+-log-error=/var/log/mysqld.log
+-pid-file=/var/run/mysqld/mysqld.pid
++log-error = /var/log/mysqld.log
++nice = 0
++socket = /var/lib/mysql/mysql.sock
++
++[mysqldump]
++max_allowed_packet = 16M
++quick
++quote-names
++
++
++
++!includedir /etc/my.cnf.d
++
+[0m
+[0;32mInfo: Computing checksum on file /etc/my.cnf[0m
+[0;32mInfo: /Stage[main]/Mysql::Server::Config/File[mysql-config-file]: Filebucketed /etc/my.cnf to puppet with sum 8ace886bbe7e274448bc8bea16d3ead6[0m
+[mNotice: /Stage[main]/Mysql::Server::Config/File[mysql-config-file]/content: content changed '{md5}8ace886bbe7e274448bc8bea16d3ead6' to '{md5}48c654e2a4e67c821c4ceaa60e011c0f'[0m
+[mNotice: /Stage[main]/Mysql::Server::Install/Package[mysql-server]/ensure: created[0m
+[mNotice: /Stage[main]/Mysql::Server::Installdb/Mysql_datadir[/var/lib/mysql]/ensure: created[0m
+[mNotice: /Stage[main]/Mysql::Server::Service/Service[mysqld]/ensure: ensure changed 'stopped' to 'running'[0m
+[0;32mInfo: /Stage[main]/Mysql::Server::Service/Service[mysqld]: Unscheduling refresh on Service[mysqld][0m
+[mNotice: /Stage[main]/Mysql::Server::Root_password/Mysql_user[root@localhost]/password_hash: defined 'password_hash' as '*F1870A8ABBE1EE7F7DCF043607936302A73948A3'[0m
+[mNotice: /Stage[main]/Mysql::Server::Root_password/File[/root/.my.cnf]/ensure: defined content as '{md5}d4759808316ef8fdcfb1454e7683956a'[0m
+[mNotice: /Stage[main]/Main/Mysql_database[puppet_db]/ensure: created[0m
+[mNotice: /Stage[main]/Main/Mysql_user[pup_user@localhost]/ensure: created[0m
+[mNotice: /Stage[main]/Main/Mysql_grant[pup_user@localhost/puppet_db.*]/ensure: created[0m
+[mNotice: Applied catalog in 8.52 seconds[0m
